@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <style>
+            video{
+                margin:2cm;
+                padding:3mm;
+                border:solid;
+            }
+        </style>
+        <script>
+            function init(){
+                document.getElementById("playButton").addEventListener("click",f1);
+                document.getElementById("pauseButton").addEventListener("click",f2);
+                document.getElementById("volButton1").addEventListener("click",f3);
+                document.getElementById("volButton2").addEventListener("click",f4);
+            }
+            function f1(){
+                document.getElementsByTagName("video")[0].play();
+            }
+            function f2(){
+                document.getElementsByTagName("video")[0].pause();
+            }
+            function f3(){
+                document.getElementsByTagName("video")[0].volume=document.getElementsByTagName("video")[0].volume*1;
+            }
+            function f4(){
+                document.getElementsByTagName("video")[0].volume=document.getElementsByTagName("video")[0].volume*0.3;
+            }
+        </script>
+    </head>
+    <body onload="init()">
+        <video height="300" width="400"  autoplay loop>
+            <source src="videos/Sarkar - Official Teaser [Tamil] _ Thalapathy Vijay _ Sun Pictures _ A.R Murugadoss _ A.R. Rahman.mp4">
+        </video>
+        <div>
+            <input type="button" value="PLAY" id="playButton">
+            <input type="button" value="PAUSE" id="pauseButton">
+            <input type="button" value="Volume Up" id="volButton1">
+            <input type="button" value="Volume Down" id="volButton2">
+        </div>
+    </body>
+</html>

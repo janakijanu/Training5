@@ -1,0 +1,141 @@
+<html>
+    <head>
+        <style>
+            textarea{
+                margin-top: 1cm;
+                width: 80%;
+                height: 10cm;
+            }
+            body{
+                margin: 1cm;
+            }
+            #statusDiv
+            {
+                border: solid;
+                background-color: black;
+                color: white;
+                font-family: "verdana";
+                font-size: small;
+                height: 1cm;
+            }
+            button{
+                border-radius: 2mm;
+                background-color: orange;
+                color: white;
+            }
+        </style>
+        <script>
+            function init()
+            {
+                var buttons=document.getElementsByTagName("button");
+                buttons[0].addEventListener("click",dbSetup);
+                buttons[1].addEventListener("click",tableSetup);
+                buttons[2].addEventListener("click",recInsert);
+                buttons[3].addEventListener("click",showRecs);
+            }
+
+            var mydb;
+            function resetStatus(){
+                document.getElementById("statusDiv").innerText = "Status : "
+            }
+
+            function dbSetup()
+            {
+            try{
+                    resetStatus();
+                    mydb=openDatabase("customerDB","1.0","This is a customer DB",2*1024*1024);
+                if(mydb == null)
+                {
+                    document.getElementById("statusDiv").innerText+="DB Creation Failed";
+                }
+                else
+                {
+                    resetStatus();
+                    document.getElementById("statusDiv").innerText+= "DB creation successfull"
+                }
+            }
+            catch(err)
+            {
+                resetStatus();
+                document.getElementById("statusDiv").innerText += err.message;
+            }
+            
+        }
+
+        function tableSetup()
+        {
+            try{
+                resetStatus();
+                mydb.transaction(f1);
+                document.getElementById("statusDiv").innerText += "Customer Table Created Successfully"
+            }catch(err)
+            {
+                resetStatus();
+                document.getElementById("statusDiv").innerText += err.message;
+            }
+        }
+
+        function f1(tran){
+            tran.executeSql("CREATE TABLE CUSTOMER (id unique,cname)");
+        }
+
+        function recInsert()
+        {
+            resetStatus();
+            try{
+                mydb.transaction(f2);
+                document.getElementById("statusDiv").innerText +="Records Inserted"
+            }catch(err)
+            {
+                document.getElementById("statusDiv").innerText +=err.message;
+            }
+        }
+
+        function f2(tran){
+            tran.executeSql("INSERT INTO CUSTOMER(id,cname) VALUES(1,'Bharath')");
+            tran.executeSql("INSERT INTO CUSTOMER(id,cname) VALUES(2,'Sarath')");
+            tran.executeSql("INSERT INTO CUSTOMER(id,cname) VALUES(3,'Vinith')");
+        }
+
+        function showRecs()
+        {
+            resetStatus();
+            ///try{
+                mydb.transaction(f3);
+                document.getElementById("statusDiv").innerText += "Records Fetched";
+           //// }catch(err)
+//{
+               // document.getElementById("statusDiv").innerText += err.message;
+            //}
+        }
+
+        function f3(tran){
+            var str="SELECT * FROM CUSTOMER";
+            alert(tran.executeSql(str,[],f4));
+            
+        }
+
+        function f4(tran,recset){
+            alert(555);
+            var customerRows=recset.rows;
+            for(i=0; i<customerRows.length; i++){
+               var rowData= customerRows[i].id+","+customerRows[i].cname + "\n";
+               alert(rowData);
+               document.getElementById("ta").value += rowData;
+            }
+        }
+        </script>
+    </head>
+    <body onload="init()">
+        <div id="statusDiv">
+            Status:
+        </div>
+        <br>
+        <button type="button">Setup Database</button>
+        <button type="button">Create Table</button>
+        <button type="button">Insert Sample Records</button>
+        <button type="button">Show Records</button>
+        <br>
+        <textarea id="ta"></textarea>
+    </body>
+</html>

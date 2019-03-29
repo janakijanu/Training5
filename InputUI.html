@@ -1,0 +1,73 @@
+<html>
+
+<head>
+<style>
+    body{
+        margin:1cm;
+    }
+    td{
+        border:solid thin blueviolet;
+        height:1cm;
+        width:7cm;
+        padding:20px;
+    }
+</style>
+</head>
+
+<body>
+    <datalist id="cities">
+        <option>Chennai</option>
+        <option>Delhi</option>
+        <option>Bangalore></option>
+    </datalist>
+    <form action="Success.html">
+        <table>
+            <tr>
+                <td>Name</td>
+                <td><input required minlength="5" maxlength="12" title="5-12"></td>
+            </tr>
+
+            <tr>
+                <td>Annual Salary</td>
+                <td><input type="number" step="100" minlength="15000" maxlength="500000"></td>
+            </tr>
+
+
+            <tr>
+                <td>Cibil Score</td>
+                <td><input type="range" min="1" max="100"></td>
+            </tr>
+
+            <tr>
+                <td>Date Of Birth</td>
+                <td><input type="month"></td>
+            </tr>
+
+            <tr>
+                <td>Photo</td>
+                <td><input type="file"></td>
+            </tr>
+
+            <tr>
+                <td>Your Favourite Color</td>
+                <td><input type="color"></td>
+            </tr>
+
+            <tr>
+                <td>City</td>
+                <td><input type="text" list="cities"></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="Email"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button style="text-align: center;margin-left: 40%">SUBMIT DATA</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<html>
+
+<head>
+    <style>
+        #img1 {
+            width: 5cm;
+           transition-property: width;
+           transition-duration: 10s;
+           /* transition-delay: 2s; */
+           transition-timing-function: ease-in-out;
+        }
+        #img2{
+            transition-property: opacity, transform;
+            transition-duration: 6s, 10s;
+            transition-timing-function: ease-in-out,linear;
+        }
+    </style>
+    <script>
+        function doChangeWidth() {
+           document.images[0].style.width="15cm";
+        }
+
+        function doRestore() {
+            document.images[0].style.width="5cm";
+        }
+
+        function doChangePosition() {
+            //document.images[1].style.opacity=0;
+            document.images[1].style.transform="rotate(30deg)";
+            //document.images[1].style.left="16cm";
+        }
+
+        function init() {
+            // document.getElementsByTagName("img")[0].addEventListener("click", doChangePosition);
+            // document.getElementsByTagName("img")[0].addEventListener("click", doChangeWidth);
+            // document.getElementsByTagName("img")[0].addEventListener("mouseout", doRestore);
+            document.images[0].addEventListener("mouseover",doChangeWidth);
+            document.images[0].addEventListener("mouseout",doRestore);
+            document.images[1].addEventListener("click",doChangePosition);
+        }
+    </script>
+
+</head>
+
+<body onload="init()">
+    <img src="images/Yuvraj.jpg" id="img1">
+    <img src="images/image14.jpg" id="img2">
+</body>
+
+</html>

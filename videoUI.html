@@ -1,0 +1,103 @@
+<html>
+
+<head>
+    <style>
+    video{
+        border: solid thick black;
+        margin: 2cm;
+        padding: 5mm;
+    }
+    
+    #controlPanel{
+        width:15cm;
+        height:3cm;
+        
+        padding: 4mm;
+        border: solid;
+        margin-left: 2cm;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: x-small; 
+    }
+    #outputDiv{
+        width:10cm;
+        height:5cm;
+        padding: 4mm;
+        border: solid thin;
+        background-color: beige;
+        position: fixed;
+        top:2cm;
+        left:20cm;
+    }
+    </style>
+
+    <script>
+        function init(){
+            document.querySelector("#showDetailsButton").addEventListener("click", doShowAction)
+            document.querySelector("#playButton").addEventListener("click", doPlayAction)
+            document.querySelector("#pauseButton").addEventListener("click", doPauseAction)
+            document.querySelector("#slowButton").addEventListener("click", doSlowAction)
+            document.querySelector("#fastButton").addEventListener("click", doFastAction)
+            document.querySelector("#vdownButton").addEventListener("click", doVDownAction)
+            document.querySelector("#fastButton").addEventListener("click", doVUpAction)
+       
+        }
+
+        function doShowAction(){
+            var myvideo=document.getElementsByTagName("video")[0]
+            var output="";
+            output+="Current Time : "+ myvideo.currentTime+"<br>";
+            output+="Play Back Rate : "+ myvideo.defaultPlaybackRate+"<br>";
+
+            document.getElementById("outputDiv").innerHTML=output;
+        }
+
+        function doPlayAction(){
+            var myvideo=document.getElementsByTagName("video")[0]
+            myvideo.play();
+        }
+
+        function doSlowAction(){
+            var myvideo=document.getElementsByTagName("video")[0]
+            myvideo.defaultPlaybackRate=myvideo.defaultPlaybackRate*0.50;
+        }
+
+        function doFastAction(){
+            var myvideo=document.getElementsByTagName("video")[0]
+            myvideo.defaultPlaybackRate=myvideo.defaultPlaybackRate*2;
+        }
+
+        function doVDownAction(){
+            var myvideo=document.getElementsByTagName("video")[0]
+            myvideo.volume=myvideo.voume*0.50;
+        }
+
+        function doVUpAction(){
+            var myvideo=document.getElementsByTagName("video")[0]
+            myvideo.volume=myvideo.voume*1.50;
+        }
+    </script>
+</head>
+
+
+<body onload="init()">
+    <video controls autoplay poster="Yuvraj.jpg" loop height="300" width="400" onplay="doShowAction()">
+        <source src="videos/Vodafone Zoozoo Ads.mp4" type="video/mp4">
+        
+    </video>
+
+    <div id="controlPanel">
+        <input type='button' value="Show Details" id="showDetailsButton">
+        <input type='button' value="Play" id="playButton">
+        <input type='button' value="Pause" id="pauseButton">
+        <input type='button' value="Slow" id="slowButton">
+        <input type='button' value="Fast" id="fastButton">
+        <input type='button' value="Volume Down" id="vdownButton">
+        <input type='button' value="Volume Up" id="vupButton">
+    </div>
+
+    <div id="outputDiv">
+
+    </div>
+</body>
+
+</html>

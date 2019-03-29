@@ -1,0 +1,65 @@
+<html>
+
+<head>
+    <style>
+        img {
+            width: 5cm;
+            transition-property: position, width,;
+            transition-duration: 5s, 5s;
+            transition-timing-function: step-end, step-end;
+            animation: widthSteps;
+
+        }
+
+        @keyframes widthSteps {
+
+            /* You could think of as "step 1" */
+            0% {
+                width: 2m;
+            }
+
+            20% {
+                width: 4m;
+            }
+
+            50%{
+                width: 10cm
+            }
+
+
+            /* You could think of as "step 2" */
+            100% {
+                width: 20cm;
+            }
+    </style>
+
+    <script>
+        function doChangeWidth() {
+            document.getElementsByTagName("img")[0].style.width = "20cm";
+        }
+
+        function doRestore() {
+            document.getElementsByTagName("img")[0].style.transform = "none";
+        }
+
+        function doChangePosition() {
+            document.getElementsByTagName("img")[0].style.position = "relative";
+            document.getElementsByTagName("img")[0].style.top = "3cm";
+            document.getElementsByTagName("img")[0].style.left = "3cm";
+            document.getElementsByTagName("img")[0].style.transform = "rotate(180deg)";
+        }
+
+        function init() {
+            document.getElementsByTagName("img")[0].addEventListener("click", doChangePosition);
+            document.getElementsByTagName("img")[0].addEventListener("click", doChangeWidth);
+            document.getElementsByTagName("img")[0].addEventListener("mouseout", doRestore);
+        }
+    </script>
+
+</head>
+
+<body onload="init()">
+    <img src="images/Yuvraj.jpg">
+</body>
+
+</html>
